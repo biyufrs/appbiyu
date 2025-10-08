@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: tomato;
+    
+}
+main {
+    background-color: white;
+    border-radius: 8px;
+
+}
+h1 {
+    color: #ac5252;
+}
+p {
+    color: aqua;
+}

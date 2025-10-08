@@ -1,3 +1,5 @@
+// untuk konfigurasi 
+
 {
   "compilerOptions": {
     "target": "ES2017",
