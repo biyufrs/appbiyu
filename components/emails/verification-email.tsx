@@ -64,7 +64,7 @@ const VerificationEmail = ({userName,verificationUrl}:VerificationEmailProps) =>
             {/* Alternative Link */}
             <Section>
               <Text className="text-[14px] text-gray-600 leading-[20px] mb-[24px]">
-                If the button above doesn't work, you can copy and paste this link into your browser:
+                If the button above doesn&apos;t work, you can copy and paste this link into your browser:
               </Text>
               
               <Text className="text-[14px] text-blue-600 leading-[20px] mb-[32px] break-all">
@@ -78,7 +78,7 @@ const VerificationEmail = ({userName,verificationUrl}:VerificationEmailProps) =>
               </Text>
 
               <Text className="text-[14px] text-gray-600 leading-[20px] mb-[32px]">
-                If you didn't create an account with us, you can safely ignore this email.
+                If you didn&apos;t create an account with us, you can safely ignore this email.
               </Text>
             </Section>
 
