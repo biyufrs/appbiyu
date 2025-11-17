@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link"
-import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,26 +29,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
+      <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NuqsAdapter>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-        {/* <div>
-          <Link href={"/"}>home </Link>
-          <Link href={"/about"}>about </Link>
-          <Link href={"/contact"}>contact </Link>
-          <Link href={"/users"}>Users </Link>
-          <Link href={"/jokes"}>Jokes </Link>
-          <Link href={"/al-quran"}>Al-quran </Link>
-          </div> */}
-        {children}
-        <Toaster/>
+            {/* <div>
+              <Link href={"/"}>Home</Link>
+              <Link href={"/about"}>About </Link>
+              <Link href={"/contact"}>Contact </Link>
+              <Link href={"/jokes"}>jokes </Link>
+              <Link href={"/users"}>users </Link>
+              <Link href={"/alquran"}>al-Quran</Link>
+            </div> */}
+            {children}
+            <Toaster />
           </ThemeProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

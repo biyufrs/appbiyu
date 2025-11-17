@@ -1,47 +1,27 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import CreateNotebookButton from "@/components/buttons/create-notebook-button"
-import NoteCard from "@/components/cards/notebook-card"
-import NotebookCard from "@/components/cards/notebook-card"
-import LogOut from "@/components/logout"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
 import { PageWrapper } from "@/components/wrappers/page-wrapper"
-import { auth } from "@/lib/auth"
-import { getNotebookById, getNotebooks } from "@/server/notebook"
-import { headers } from "next/headers"
-import { Note } from "@/db/schema"
+import { getNoteById } from "@/server/notes"
+import RichTextEditor from "@/components/tiptap/rich-text-editor"
+import type { JSONContent } from "@tiptap/react"
 
-type Params = Promise<{notebookId:string}>
+type Params = Promise<{noteId:string}>
 
-export default async function Page({params}:{params:Params}) {
+export default async function NotePage({params}:{params:Params}) {
   // menampilkan email yg terhubung dg session berdasarkan data login
-  const { notebookId } = await params
-  const { notebook } = await getNotebookById(notebookId)
+  const { noteId } = await params
+  const { note } = await getNoteById(noteId)
 
   return (
     <PageWrapper breadcrumbs={[
         {label:"Dashboard",href:"/dashboard"},
-        {label:notebook?.name ?? "Note",href:`/dashboard/notebook/${notebookId}`},
+        {label:note?.notebook?.name ?? "Notebook",href:`/dashboard/notebook/${note?.notebook?.id}`},
+        {label:note?.title ?? "Note",href:`/dashboard/note/${noteId}`},
       ]}
     >
-      <h1>{notebook?.name}</h1>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {notebook?.notes?.map((note)=>(
-          <NoteCard key={note.id} note={note}/>
-        ))}
-      </div>
+      <h1>{note?.title}</h1>
+      <RichTextEditor
+        content={note?.content as JSONContent[]}
+        noteId={noteId}
+      />
 
     </PageWrapper>
   )

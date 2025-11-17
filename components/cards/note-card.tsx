@@ -1,9 +1,9 @@
 "use client"
 import {
   Card,
-  CardAction,
+//   CardAction,
   CardContent,
-  CardDescription,
+//   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -19,10 +19,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Note, Notebook } from "@/db/schema"
+import { Note } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { deleteNotebook } from "@/server/notebook"
+// import { deleteNotebook } from "@/server/notebook"
 import { toast } from "sonner"
 import Link from "next/link"
 import { Button } from "../ui/button"
@@ -45,6 +45,7 @@ export default function NoteCard({note}:NotebookCardProps) {
             }
         } catch (error) {
             toast.error("afwan ada kendala saat menghapus catatan")
+            console.log(error)
         } finally {
             setIsDeleting(false)
         }

@@ -17,7 +17,7 @@ export const auth = betterAuth({
     }),
     // fitur verifikasi email
     emailVerification:{
-        sendVerificationEmail: async({user,url,token},request) => {
+        sendVerificationEmail: async({user,url}) => {
             const{data,error} = await resend.emails.send({
                 from: 'biyuApp Support <admin@support.abiyufirasmadani.web.id>',
                 to: user.email,
@@ -51,7 +51,7 @@ export const auth = betterAuth({
     //   dibawahini fitur peksa wajib verifikasi email, kalau butuh tinggal nyalain
     //   requireEmailVerification: true,
       // fitur reset password  
-      sendResetPassword: async ({user, url, token}, request) => {
+      sendResetPassword: async ({user, url}) => {
         const {data,error} = await resend.emails.send({
             // from: 'Acme <onboarding@resend.dev>',
             from: 'biyuApp Support <admin@support.abiyufirasmadani.web.id>',

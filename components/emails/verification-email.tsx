@@ -12,7 +12,6 @@ import {
   Text,
   Tailwind,
 } from '@react-email/components';
-import { Verification } from 'better-auth';
 interface VerificationEmailProps {
     userName:string
     verificationUrl:string

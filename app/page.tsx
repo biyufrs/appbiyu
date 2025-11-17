@@ -10,7 +10,7 @@ import PricingComparator from '@/components/pricing-comparator'
 import StatsSection from '@/components/stats-4'
 import TeamSection from '@/components/team'
 import WallOfLoveSection from '@/components/testimonials'
-import { Content } from 'next/font/google'
+// import { Content } from 'next/font/google'
 import React from 'react'
 
 export default function page() {

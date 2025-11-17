@@ -1,5 +1,5 @@
 "use client"
-import { email, z } from "zod"
+import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -10,21 +10,16 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
-import { signInUser } from "@/server/users"
 import { toast } from "sonner"
-
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -34,13 +29,11 @@ import Link from "next/link"
 import { Loader2 } from "lucide-react"
 import { authClient } from "@/lib/auth-client"
 
-
 const formSchema = z.object({
   password: z.string().min(8),
   confirmPassword: z.string().min(8)
   // email: z.email(), //menentukan validasi form agar muncul teguran bila salah input di form
 })
-
 
 export function ResetPasswordForm({
   className,
@@ -63,17 +56,13 @@ export function ResetPasswordForm({
    
 
 
-
-
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
-
 
       // Do something with the form values.
       // ✅ This will be type-safe and validated.
       // console.log(values)
         setIsLoading(true) //mengaktifkan state loading ketika user submit form
-
 
         // logika opsional u/ menampilkan toast saat error confirm password
         if (values.password !== values.confirmPassword){
@@ -83,10 +72,10 @@ export function ResetPasswordForm({
         }
         // mengaktifkan fitur reset password dan pengisian token dr better auth
         const {error} = await authClient.resetPassword({
-          newPassword:values.password,
+          newPassword:values.password, 
           token,
         })
-       
+        
         if (error){
           toast.error(error.message)
         } else {
@@ -94,9 +83,8 @@ export function ResetPasswordForm({
           router.push("/login")
         }
 
-
         setIsLoading(false)
-     
+      
     }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -108,7 +96,6 @@ export function ResetPasswordForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-
 
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -152,15 +139,12 @@ export function ResetPasswordForm({
             />
           </div>
 
-
             <div className="flex flex-col gap-3">
               {/* aktifkan state isLoading agar g spam submit form dan menghindari over request ke database */}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {/* isi button = jika state nya is Loading jadi icon spinner bila tidak tulisan login */}
                 {isLoading ? (<Loader2 className="size-4 animate-spin" />) : ("Reset Password") }
               </Button>
-
-
 
 
             </div>
@@ -173,8 +157,6 @@ export function ResetPasswordForm({
             </div>
       </form>
     </Form>
-
-
 
 
         </CardContent>

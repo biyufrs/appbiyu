@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -81,6 +80,8 @@ export default function UserForm(
             setIsLoading(false)
         } catch (error) {
             toast.error(`Astaghfirullah error di ${user?"update":"penambahan"} data santri, kamu habis ngapain?`) //popup notifikasi yg menandakan prosesnya aman
+            console.log(error)
+            setIsLoading(false)
         } finally {
             // setIsLoading(false) //proses komunikasi api database berakhir
         }
