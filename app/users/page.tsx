@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { UserPlus } from "lucide-react";
 import UserForm from "@/components/forms/user-form";
 
-
 export default async function HalamanPengguna(){
     return(
         <div className="flex flex-col gap-4 p-4 md:p-24">
@@ -34,7 +33,7 @@ export default async function HalamanPengguna(){
                             </div>
                             <div>
                                 <UserForm />
-                               
+                                
                             </div>
                         </div>
                         </DialogHeader>
