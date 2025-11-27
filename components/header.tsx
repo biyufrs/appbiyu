@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { Logo } from '@/components/logo'
+// import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import React from 'react'
@@ -17,7 +17,27 @@ const menuItems = [
     { name: 'About', href: '#link' },
 ]
 
-export const HeroHeader = ({ session }: { session: any }) => {
+type SessionType = {
+  user: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    email: string;
+    emailVerified: boolean;
+    name: string;
+    image?: string | null;
+  };
+  session: {
+    id: string;
+    createdAt: Date;
+    expiresAt: Date;
+    token: string;
+    ipAddress?: string;
+    userAgent?: string;
+  };
+} | null;
+
+export const HeroHeader = ({ session }: { session: SessionType }) => {
     const [menuState, setMenuState] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
 
