@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
+import { auth } from '@/lib/auth'
+import { headers } from 'next/headers'
 
 const transitionVariants = {
     item: {
@@ -26,10 +28,13 @@ const transitionVariants = {
     },
 }
 
-export default function HeroSection() {
+export default async function HeroSection() {
+    const session = await auth.api.getSession({
+    headers: await headers()
+  })
     return (
         <>
-            <HeroHeader />
+            <HeroHeader session={session} />
             <main className="overflow-hidden">
                 <div
                     aria-hidden
@@ -48,7 +53,7 @@ export default function HeroSection() {
                                     speedSegment={0.3}
                                     as="h1"
                                     className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16">
-                                    Build and Ship 10x faster with NS
+                                    Abiyu - Freelance Fullstack Web Developer
                                 </TextEffect>
                                 <TextEffect
                                     per="line"
@@ -57,7 +62,7 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mt-8 max-w-2xl text-pretty text-lg">
-                                    Tailwindcss highly customizable components for building modern websites and applications that look and feel the way you mean it.
+                                    I specialize in crafting fullstack web applications with modern technologies. From responsive frontends to scalable backends, I deliver high-quality solutions that drive results for your business.
                                 </TextEffect>
 
                                 <AnimatedGroup
@@ -81,7 +86,7 @@ export default function HeroSection() {
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
                                             <Link href="#link">
-                                                <span className="text-nowrap">Start Building</span>
+                                                <span className="text-nowrap">View Portfolio</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -92,7 +97,7 @@ export default function HeroSection() {
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5 text-base">
                                         <Link href="#link">
-                                            <span className="text-nowrap">Request a demo</span>
+                                            <span className="text-nowrap">Contact Me</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>
@@ -115,14 +120,14 @@ export default function HeroSection() {
                                     <Image
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
                                         src="/gambar-hero.png"
-                                        alt="app screen"
+                                        alt="Portfolio Screenshot"
                                         width="2700"
                                         height="1440"
                                     />
                                     <Image
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
                                         src="/gambar-hero.png"
-                                        alt="app screen"
+                                        alt="Portfolio Screenshot"
                                         width="2700"
                                         height="1440"
                                     />
@@ -137,7 +142,7 @@ export default function HeroSection() {
                             <Link
                                 href="/"
                                 className="block text-sm duration-150 hover:opacity-75">
-                                <span> Meet Our Customers</span>
+                                <span> My Tech Stack</span>
 
                                 <ChevronRight className="ml-1 inline-block size-3" />
                             </Link>
@@ -145,76 +150,76 @@ export default function HeroSection() {
                         <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                    alt="Nvidia Logo"
-                                    height="20"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                    alt="React Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
 
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/column.svg"
-                                    alt="Column Logo"
-                                    height="16"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                                    alt="Next.js Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
-                                    alt="GitHub Logo"
-                                    height="16"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                                    alt="TypeScript Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nike.svg"
-                                    alt="Nike Logo"
-                                    height="20"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                    alt="Node.js Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                    alt="Lemon Squeezy Logo"
-                                    height="20"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+                                    alt="Tailwind CSS Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                    alt="Laravel Logo"
-                                    height="16"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                    alt="PostgreSQL Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-7 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                    alt="Lilly Logo"
-                                    height="28"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                    alt="MongoDB Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
 
                             <div className="flex">
                                 <Image
-                                    className="mx-auto h-6 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
-                                    alt="OpenAI Logo"
-                                    height="24"
-                                    width="100"
+                                    className="mx-auto h-8 w-8"
+                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                                    alt="Git Logo"
+                                    height="32"
+                                    width="32"
                                 />
                             </div>
                         </div>

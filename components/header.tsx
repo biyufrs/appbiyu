@@ -7,6 +7,8 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { useScroll } from 'motion/react'
 import { ModeToggle } from './buttons/mode-toggle'
+import LogOut from './logout'
+import Image from 'next/image'
 
 const menuItems = [
     { name: 'Features', href: '#link' },
@@ -15,7 +17,7 @@ const menuItems = [
     { name: 'About', href: '#link' },
 ]
 
-export const HeroHeader = () => {
+export const HeroHeader = ({ session }: { session: any }) => {
     const [menuState, setMenuState] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
 
@@ -40,8 +42,13 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo />
-                            </Link>
+                                {/* <Logo /> */}
+                                <Image
+                                    src="/logo.png"
+                                    alt="logo"
+                                    width={100}
+                                    height={100}
+                                />                            </Link>
 
                             <button
                                 onClick={() => setMenuState(!menuState)}
@@ -81,21 +88,28 @@ export const HeroHeader = () => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm">
-                                    <Link href="/login">
-                                        <span>Login</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm">
-                                    <Link href="/signup">
-                                        <span>Sign Up</span>
-                                    </Link>
-                                </Button>
+                                {session ? (
+                                        <LogOut />
+                                    ) : (
+                                        <>
+                                            <Button
+                                                asChild
+                                                variant="outline"
+                                                size="sm">
+                                                <Link href="/signup">
+                                                    <span>Sign Up</span>
+                                                </Link>
+                                            </Button>
+
+                                            <Button
+                                                asChild
+                                                size="sm">
+                                                <Link href="/login">
+                                                    <span>Login</span>
+                                                </Link>
+                                            </Button>
+                                        </>
+                                    )}
                                 <ModeToggle/>
                             </div>
                         </div>
